@@ -1,6 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../redux/store'
+import { logout } from '../redux/firebase/authHandlers'
 
 const Navbar: React.FC = () => {
+  const user = useAppSelector((state) => state.auth.user)
+  const dispatch = useAppDispatch()
+  const handleLogout = async () => {
+    await logout(dispatch)
+  }
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -37,21 +45,18 @@ const Navbar: React.FC = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li><a>Item 1</a></li>
-          <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li><a>Submenu 1</a></li>
-                <li><a>Submenu 2</a></li>
-              </ul>
-            </details>
-          </li>
-          <li><a>Item 3</a></li>
+          <li><Link to='/login'>Login</Link></li>
+          <li><Link to='/register'>Register</Link></li>
+
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <div className="">
+          <div className="badge badge-neutral">
+            {user ? <>{user?.email}</> : <p>user Logged out</p>}
+          </div>
+          <button onClick={handleLogout} className='btn btn-success'>Logout</button>
+        </div>
       </div>
     </div>
   )
