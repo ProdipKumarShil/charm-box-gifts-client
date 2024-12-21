@@ -24,7 +24,7 @@ export const emailPasswordLogin = async (email: string, password: string, dispat
     const result = await signInWithEmailAndPassword(auth, email, password)
     const user = result?.user
     dispatch(setUser({uid: user?.uid, email: user?.email, displayName: user?.displayName, photoURL: user?.photoURL}))
-  } catch (error) {
+  } catch (error: any) {
     dispatch(setError(error.message))
   } finally {
     dispatch(setLoading(false))
@@ -54,7 +54,7 @@ export const logout = async (dispatch: AppDispatch) => {
     dispatch(setLoading(true))
     await signOut(auth)
     dispatch(setUser(null))
-  } catch (error) {
+  } catch (error: any) {
     dispatch(setError(error.message))
   } finally{
     dispatch(setLoading(false))
