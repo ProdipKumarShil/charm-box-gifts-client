@@ -8,13 +8,9 @@ const AuthObserver: React.FC = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log(user)
       if(user){
-        dispatch(setUser({
-          uid: user?.uid,
-          email: user?.email,
-          displayName: user?.displayName,
-          photoURL: user?.photoURL
-        }))
+        dispatch(setUser({name: user.displayName, email: user?.email, imgUrl: user?.displayName, role: 'buyer'}))
       } else {
         dispatch(setUser(null))
       }

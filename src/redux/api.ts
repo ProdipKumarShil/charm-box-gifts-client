@@ -3,7 +3,7 @@ import { Product } from "../types";
 
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5000/api'}),
+  baseQuery: fetchBaseQuery({baseUrl: 'https://charm-box-gifts-server.vercel.app/api'}),
   tagTypes: ['User', 'Product'],
   endpoints: (builder) => ({
 

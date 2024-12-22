@@ -16,6 +16,6 @@ export type User = {
   role?: 'admin' | 'seller' | 'buyer';
   imgUrl?: string;
   wishlist?: string[];
-  cart: string[];
-  status: 'pending' | 'approved';
+  cart?: string[];
+  status?: 'pending' | 'approved';
 }

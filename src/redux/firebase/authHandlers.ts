@@ -11,9 +11,13 @@ export const googleSignIn = async (dispatch: AppDispatch) => {
     dispatch(setLoading(true))
     const result = await signInWithPopup(auth, googleProvider)
     const user = result.user
-    dispatch(setUser({uid: user?.uid, email: user?.email, displayName: user?.displayName, photoURL: user?.photoURL}))
+    console.log(user)
+    // dispatch(setUser({uid: user?.uid, email: user?.email, displayName: user?.displayName, photoURL: user?.photoURL}))
+        dispatch(setUser({name: user.displayName, email: user?.email, imgUrl: user?.displayName, role: 'buyer'}))
   } catch (error: any) {
     dispatch(setError(error.message))
+  } finally {
+    dispatch(setLoading(false))
   }
 }
 
